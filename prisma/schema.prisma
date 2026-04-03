@@ -1,0 +1,74 @@
+// Prisma Schema — Matrix of Destiny
+// DATABASE_URL is optional; app works without DB using localStorage.
+// Run: npx prisma db push && npm run db:seed
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---- History tables ----------------------------------------
+
+model CalculationHistory {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Input
+  name        String?
+  dateOfBirth String  // ISO date YYYY-MM-DD
+
+  // Result stored as JSON blob
+  result Json
+
+  // Optional share token
+  shareToken String? @unique
+
+  @@index([dateOfBirth])
+  @@index([shareToken])
+  @@map("calculation_history")
+}
+
+model CompatibilityHistory {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Input
+  name1        String?
+  dateOfBirth1 String
+  name2        String?
+  dateOfBirth2 String
+
+  // Result stored as JSON blob
+  result Json
+
+  // Optional share token
+  shareToken String? @unique
+
+  @@index([dateOfBirth1, dateOfBirth2])
+  @@map("compatibility_history")
+}
+
+// ---- Share links (optional) --------------------------------
+
+model ShareLink {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  slug String @unique
+  type String // "matrix" | "compatibility"
+
+  // Encoded params
+  params Json
+
+  // Optional: expiry
+  expiresAt DateTime?
+
+  @@index([slug])
+  @@map("share_links")
+}

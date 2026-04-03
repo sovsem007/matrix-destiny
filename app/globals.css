@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- Google Fonts ---- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Light theme (clean, ethereal) */
+    --background: 270 20% 98%;
+    --foreground: 260 15% 10%;
+
+    --card: 270 15% 97%;
+    --card-foreground: 260 15% 10%;
+
+    --popover: 270 15% 97%;
+    --popover-foreground: 260 15% 10%;
+
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 263 20% 93%;
+    --secondary-foreground: 263 30% 25%;
+
+    --muted: 263 15% 93%;
+    --muted-foreground: 260 10% 45%;
+
+    --accent: 263 30% 90%;
+    --accent-foreground: 263 40% 25%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 263 20% 87%;
+    --input: 263 20% 87%;
+    --ring: 263 70% 50%;
+
+    --radius: 0.75rem;
+
+    --font-playfair: 'Playfair Display', Georgia, serif;
+    --font-inter: 'Inter', system-ui, sans-serif;
+  }
+
+  .dark {
+    /* Dark mystic theme */
+    --background: 240 22% 7%;
+    --foreground: 220 20% 93%;
+
+    --card: 240 20% 10%;
+    --card-foreground: 220 20% 93%;
+
+    --popover: 240 20% 10%;
+    --popover-foreground: 220 20% 93%;
+
+    --primary: 263 70% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 15% 16%;
+    --secondary-foreground: 220 20% 80%;
+
+    --muted: 240 15% 16%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 240 15% 18%;
+    --accent-foreground: 220 20% 85%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 15% 18%;
+    --input: 240 15% 18%;
+    --ring: 263 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-violet-500/30 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-violet-500/50;
+  }
+
+  /* Date input styling */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    @apply opacity-50 cursor-pointer;
+  }
+}
+
+@layer utilities {
+  /* Text gradient utilities */
+  .text-gradient-violet {
+    @apply bg-gradient-to-r from-violet-400 to-violet-200 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-400 to-gold-300 bg-clip-text text-transparent;
+  }
+
+  /* Mystic background */
+  .bg-mystic {
+    background: radial-gradient(ellipse at top, hsl(240 22% 12%) 0%, hsl(240 22% 7%) 50%, hsl(245 20% 7%) 100%);
+  }
+
+  .dark .bg-page {
+    background: radial-gradient(ellipse at top, hsl(240 22% 10%) 0%, hsl(240 22% 7%) 100%);
+  }
+
+  /* Glass utilities */
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  /* Print-friendly PDF view */
+  .pdf-export {
+    @apply bg-midnight text-white;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Focus ring */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+}
