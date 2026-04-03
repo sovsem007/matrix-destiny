@@ -2,6 +2,8 @@
 
 Современный веб-сервис нумерологии: персональная матрица судьбы и совместимость пар.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sovsem007/matrix-destiny&project-name=matrix-destiny&repository-name=matrix-destiny)
+
 ## Быстрый старт
 
 ```bash
